@@ -8,23 +8,23 @@ import actions from './phonebook-actions'
 //       {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
 //     ]
 
-const itemsReducer = createReducer([], {
-    [actions.addContact]: (state, action) => {
-        if (state.some(contact => {
-            return contact.name.toLowerCase() === action.payload.name.toLowerCase()
-            })){
-                alert(`${action.payload.name} is already in cotacts`)
-                return state
-            }
-        return [...state, action.payload]
-    },
-    [actions.delContact]: (state, action) => state.filter(contact => contact.id !== action.payload),
-})
+// const itemsReducer = createReducer([], {
+//     [actions.addContact]: (state, action) => {
+//         if (state.some(contact => {
+//             return contact.name.toLowerCase() === action.payload.name.toLowerCase()
+//             })){
+//                 alert(`${action.payload.name} is already in cotacts`)
+//                 return state
+//             }
+//         return [...state, action.payload]
+//     },
+//     [actions.delContact]: (state, action) => state.filter(contact => contact.id !== action.payload),
+// })
 
-const filterReducer = createReducer('', {
-    [actions.filterContacts]: (state, action) => action.payload,
-})
+// const filterReducer = createReducer('', {
+//     [actions.filterContacts]: (state, action) => action.payload,
+// })
 
 
-export {itemsReducer, filterReducer}
+// export {itemsReducer, filterReducer}
 

@@ -5,7 +5,7 @@ import actions from '../../redux/phonebook/phonebook-actions'
 import {getContacts} from '../../redux/phonebook/phonebook-selectors'
 
 export default function ContactList(){
-    fetch('https://61bdb5d12a1dd4001708a0fa.mockapi.io/').then(data => console.log(data))
+
     const contacts = useSelector(getContacts)
     const dispatch = useDispatch()
  
