@@ -4,19 +4,20 @@ import actions from '../../redux/phonebook/phonebook-actions'
 import {getFilter} from '../../redux/phonebook/phonebook-selectors'
 
 export default function Filter(){
-    const value = useSelector(getFilter)
-    const dispatch = useDispatch()
+    // const value = useSelector(getFilter)
+    // const dispatch = useDispatch()
 
     return(
-        <>
-        <p>Find contacts by name</p>
-          <input
-                type="text"
-                name="filter"
-                onChange = {(event) => dispatch(actions.filterContacts(event.target.value))}
-                value = {value}
-            />
-        </>
+        // <>
+        // <p>Find contacts by name</p>
+        //   <input
+        //         type="text"
+        //         name="filter"
+        //         onChange = {(event) => dispatch(actions.filterContacts(event.target.value))}
+        //         value = {value}
+        //     />
+        // </>
+        <div>lol</div>
     )
 }
 

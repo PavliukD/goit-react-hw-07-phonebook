@@ -9,7 +9,7 @@ import { createAction } from '@reduxjs/toolkit'
 //     }
 // })
 // const delContact = createAction('phonebook/delContact')
-// const filterContacts = createAction('phonebook/filterContacts')
+
 
 
 // const actions = {addContact, delContact, filterContacts}
@@ -27,3 +27,5 @@ export const addContactError = createAction('phonebook/addContactError')
 export const delContactRequest = createAction('delContactRequest')
 export const delContactSucces = createAction('phonebook/delContactSucces')
 export const delContactError = createAction('phonebook/delContactError')
+
+export const filterContacts = createAction('phonebook/filterContacts')

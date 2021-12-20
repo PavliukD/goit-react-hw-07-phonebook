@@ -1,12 +1,34 @@
 import { createReducer } from '@reduxjs/toolkit'
-import actions from './phonebook-actions'
+import * as actions from './phonebook-actions'
 
-// const initialState = [
-//       {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
-//       {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
-//       {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
-//       {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
-//     ]
+
+
+const itemsReducer = createReducer([], {
+   [actions.getAllContactsSucces]: (_, action) => action.payload,
+   [actions.addContactSucces]: (state, action) => {
+        if (state.some(contact => {
+            return contact.name.toLowerCase() === action.payload.name.toLowerCase()
+        })){
+            alert(`${action.payload.name} is already in cotacts`)
+            return state
+        }
+        return [...state, action.payload]
+   },
+   [actions.delContactSucces]: (state, action) => state.filter(contact => contact.id !== action.payload),  
+})
+
+const loadingReducer = createReducer(false, {
+    [actions.getAllContactsRequest]: () => true,
+    [actions.getAllContactsSucces]: () => false,
+    [actions.getAllContactsError]: () => false, 
+    [actions.getAllContactsRequest]: () => true,
+    [actions.getAllContactsSucces]: () => false,
+    [actions.getAllContactsError]: () => false,
+    [actions.delContactRequest]: () => true,
+    [actions.delContactSucces]: () => false,
+    [actions.delContactError]: () => false
+})
+
 
 // const itemsReducer = createReducer([], {
 //     [actions.addContact]: (state, action) => {
@@ -21,10 +43,10 @@ import actions from './phonebook-actions'
 //     [actions.delContact]: (state, action) => state.filter(contact => contact.id !== action.payload),
 // })
 
-// const filterReducer = createReducer('', {
-//     [actions.filterContacts]: (state, action) => action.payload,
-// })
+const filterReducer = createReducer('', {
+    [actions.filterContacts]: (state, action) => action.payload,
+})
 
 
-// export {itemsReducer, filterReducer}
+export {itemsReducer, filterReducer, loadingReducer}
 
