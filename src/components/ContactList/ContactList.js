@@ -17,7 +17,6 @@ export default function ContactList(){
  
 
     function onDelete(id){
-        console.log(id)
         dispatch(operations.delContact(id))
     }
 

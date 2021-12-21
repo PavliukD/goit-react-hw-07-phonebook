@@ -31,7 +31,6 @@ export const delContact = (id) => async dispatch => {
 
     try {
         const {data} = await api.delContact(id)
-        console.log(data)
         dispatch(actions.delContactSucces(data))
     } catch (error){
         dispatch(actions.delContactError)
