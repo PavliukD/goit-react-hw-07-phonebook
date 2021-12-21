@@ -6,7 +6,6 @@ export const getAllContacts = () => async dispatch => {
 
     try {
         const {data} = await api.getAllContacts()
-        console.log(data)
         dispatch(actions.getAllContactsSucces(data))
     } catch (error){
         dispatch(actions.getAllContactsError())
@@ -31,8 +30,9 @@ export const delContact = (id) => async dispatch => {
     dispatch(actions.delContactRequest())
 
     try {
-        await api.delContact(id)
-        dispatch(actions.delContactSucces())
+        const {data} = await api.delContact(id)
+        console.log(data)
+        dispatch(actions.delContactSucces(data))
     } catch (error){
         dispatch(actions.delContactError)
     }

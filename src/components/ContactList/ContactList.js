@@ -1,30 +1,44 @@
 import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import s from './ContactList.module.css'
-// import actions from '../../redux/phonebook/phonebook-actions'
 import {getContacts} from '../../redux/phonebook/phonebook-selectors'
 import * as operations from '../../redux/phonebook/phonebook-operations'
 
+
 export default function ContactList(){
+    const dispatch = useDispatch()
+  
+    useEffect(() => {
+        dispatch(operations.getAllContacts())
+    }, [dispatch])
+
+
+ 
+
+    function onDelete(id){
+        console.log(id)
+        dispatch(operations.delContact(id))
+    }
 
     const contacts = useSelector(getContacts)
-    const dispatch = useDispatch()
- 
+
     return(
-        // <ul className = {s.list}>
-        //     {contacts.map(contact => {
-        //         return(
-        //             <li key = {contact.id} id = {contact.id} className = {s.item}>
-        //                 <p>{contact.name}: {contact.number}</p>
-        //                 <button onClick={() => dispatch(actions.delContact(contact.id))} className = {s.button}>Delete</button>
-        //             </li>
-        //         )
-        //     })}
-        // </ul>
-        <div>WTF</div>
+        <ul className = {s.list}>
+            {contacts.map(contact => {
+                return(
+                    <li key = {contact.id} id = {contact.id} className = {s.item}>
+                        <p>{contact.name}: {contact.phone}</p>
+                        <button onClick={() => onDelete(contact.id)} className = {s.button}>Delete</button>
+                    </li>
+                )
+            })}
+        </ul>
+
     )
 }
 
 ContactList.propTypes = {
     contacts: PropTypes.array,
 }
+

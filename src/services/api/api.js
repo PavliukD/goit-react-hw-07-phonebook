@@ -1,6 +1,5 @@
 import axios from "axios"
 
-// const baseURL = 'https://61bdb5d12a1dd4001708a0fa.mockapi.io/'
 
 const api = axios.create({
     baseURL: 'https://61bdb5d12a1dd4001708a0fa.mockapi.io/'

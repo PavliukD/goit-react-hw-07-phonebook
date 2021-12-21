@@ -14,7 +14,7 @@ const itemsReducer = createReducer([], {
         }
         return [...state, action.payload]
    },
-   [actions.delContactSucces]: (state, action) => state.filter(contact => contact.id !== action.payload),  
+   [actions.delContactSucces]: (state, action) => state.filter(contact => contact.id !== action.payload.id),  
 })
 
 const loadingReducer = createReducer(false, {
@@ -29,19 +29,6 @@ const loadingReducer = createReducer(false, {
     [actions.delContactError]: () => false
 })
 
-
-// const itemsReducer = createReducer([], {
-//     [actions.addContact]: (state, action) => {
-//         if (state.some(contact => {
-//             return contact.name.toLowerCase() === action.payload.name.toLowerCase()
-//             })){
-//                 alert(`${action.payload.name} is already in cotacts`)
-//                 return state
-//             }
-//         return [...state, action.payload]
-//     },
-//     [actions.delContact]: (state, action) => state.filter(contact => contact.id !== action.payload),
-// })
 
 const filterReducer = createReducer('', {
     [actions.filterContacts]: (state, action) => action.payload,
