@@ -1,38 +1,43 @@
-import * as actions from './phonebook-actions'
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import * as api from '../../services/api/api'
 
-export const getAllContacts = () => async dispatch => {
-    dispatch(actions.getAllContactsRequest())
 
-    try {
-        const {data} = await api.getAllContacts()
-        dispatch(actions.getAllContactsSucces(data))
-    } catch (error){
-        dispatch(actions.getAllContactsError())
+export const getAllContacts = createAsyncThunk(
+    'phonebook/getAllContacts',
+    async (_, {rejectWithValue}) => {
+        try {
+            const {data} = await api.getAllContacts()
+            return data
+        } catch (error){
+            return rejectWithValue(error)
+        }
     }
-}
+)
 
-export const addContact = (contact) => async dispatch => {
-    dispatch(actions.addContactRequest())
-    const newContact = {
-        name: contact.name,
-        phone: contact.number
+export const addContact = createAsyncThunk(
+    'phonebook/addContact',
+    async (contact, {rejectWithValue}) => {
+        const newContact = {
+            name: contact.name,
+            phone: contact.number
+        }
+        try {
+            const {data} = await api.addContact(newContact)
+            return data
+        } catch (error){
+            return rejectWithValue(error)
+        }  
     }
-    try {
-        const {data} = await api.addContact(newContact)
-        dispatch(actions.addContactSucces(data))
-    } catch (error){
-        dispatch(actions.addContactError())
-    }
-}
+)
 
-export const delContact = (id) => async dispatch => {
-    dispatch(actions.delContactRequest())
-
-    try {
-        const {data} = await api.delContact(id)
-        dispatch(actions.delContactSucces(data))
-    } catch (error){
-        dispatch(actions.delContactError)
+export const delContact = createAsyncThunk(
+    'phonebook/delContact',
+    async (id, {rejectWithValue}) => {
+        try {
+            const {data} = await api.delContact(id)
+            return data
+        } catch (error){
+            return rejectWithValue(error)
+        }
     }
-}
+)

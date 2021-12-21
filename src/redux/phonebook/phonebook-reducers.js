@@ -1,11 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit'
 import * as actions from './phonebook-actions'
+import * as operations from './phonebook-operations'
 
 
 
 const itemsReducer = createReducer([], {
-   [actions.getAllContactsSucces]: (_, action) => action.payload,
-   [actions.addContactSucces]: (state, action) => {
+   [operations.getAllContacts.fulfilled]: (_, action) => action.payload,
+   [operations.addContact.fulfilled]: (state, action) => {
         if (state.some(contact => {
             return contact.name.toLowerCase() === action.payload.name.toLowerCase()
         })){
@@ -14,19 +15,19 @@ const itemsReducer = createReducer([], {
         }
         return [...state, action.payload]
    },
-   [actions.delContactSucces]: (state, action) => state.filter(contact => contact.id !== action.payload.id),  
+   [operations.delContact.fulfilled]: (state, action) => state.filter(contact => contact.id !== action.payload.id),  
 })
 
 const loadingReducer = createReducer(false, {
-    [actions.getAllContactsRequest]: () => true,
-    [actions.getAllContactsSucces]: () => false,
-    [actions.getAllContactsError]: () => false, 
-    [actions.getAllContactsRequest]: () => true,
-    [actions.getAllContactsSucces]: () => false,
-    [actions.getAllContactsError]: () => false,
-    [actions.delContactRequest]: () => true,
-    [actions.delContactSucces]: () => false,
-    [actions.delContactError]: () => false
+    [operations.getAllContacts.pending]: () => true,
+    [operations.getAllContacts.fulfilled]: () => false,
+    [operations.getAllContacts.rejected]: () => false, 
+    [operations.getAllContacts.pending]: () => true,
+    [operations.getAllContacts.fulfilled]: () => false,
+    [operations.getAllContacts.rejected]: () => false,
+    [operations.delContact.pending]: () => true,
+    [operations.delContact.fulfilled]: () => false,
+    [operations.delContact.rejected]: () => false
 })
 
 
